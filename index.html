@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý sinh viên</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    .modal-footer {
+      border: none !important;
+    }
+  </style>
+  <body>
+    <!-- Header start -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/index.html">
+          <img
+            height="50"
+            src="https://rikkei.edu.vn/wp-content/uploads/2022/04/Logo-Rikkei.png"
+            alt=""
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+      </div>
+    </nav>
+    <!-- Header end -->
+
+    <!-- Toolbar start -->
+    <div class="d-flex m-5 justify-content-between">
+      <div class="d-flex align-items-center gap-4">
+        <div style="width: 263px; font-weight: 600; font-size: 20px">
+          Quản lý sinh viên
+        </div>
+        <select class="form-select">
+          <option value="">-- Sắp xếp theo tên --</option>
+          <option value="">Tăng dần</option>
+          <option value="">Giảm dần</option>
+        </select>
+      </div>
+      <div class="d-flex align-items-center gap-4">
+        <input
+          style="min-width: 300px"
+          type="text"
+          class="form-control"
+          placeholder="Tìm kiếm sinh viên theo tên"
+        />
+        <button
+          style="min-width: 170px"
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Thêm mới sinh viên
+        </button>
+      </div>
+    </div>
+    <!-- Toolbar end -->
+
+    <!-- Table start -->
+    <div class="m-5">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Mã</th>
+            <th scope="col">Tên sinh viên</th>
+            <th scope="col">Ngày sinh</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mật khẩu</th>
+            <th class="text-center" colspan="2" scope="col">Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>NV001</td>
+            <td>Mark</td>
+            <td>13-04-2001</td>
+            <td>Tokyo</td>
+            <td>mark@gmail.com</td>
+            <td>12345654</td>
+            <td>
+              <i
+                data-bs-toggle="modal"
+                data-bs-target="#updateStudent"
+                class="fa-solid fa-pen-to-square text-warning"
+              ></i>
+            </td>
+            <td>
+              <i
+                data-bs-toggle="modal"
+                data-bs-target="#confirmDelete"
+                class="fa-solid fa-trash text-danger"
+              ></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Table end -->
+
+    <!-- Modal add user start -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Thêm mới sinh viên
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-2">
+                <label for="studentCode" class="form-label">Mã sinh viên</label>
+                <input type="email" class="form-control" id="studentCode" />
+                <div class="text-danger">Mã sinh viên không được để trống.</div>
+              </div>
+              <div class="mb-2">
+                <label for="studentName" class="form-label"
+                  >Tên sinh viên</label
+                >
+                <input type="text" class="form-control" id="studentName" />
+                <div class="text-danger">Mã sinh viên không được để trống.</div>
+              </div>
+              <div class="mb-2">
+                <label for="dateOfBirth" class="form-label">Ngày sinh</label>
+                <input type="date" class="form-control" id="dateOfBirth" />
+                <div class="text-danger">Ngày sinh không được để trống.</div>
+              </div>
+              <div class="mb-2">
+                <label for="address" class="form-label">Địa chỉ</label>
+                <input type="text" class="form-control" id="address" />
+              </div>
+              <div class="mb-2">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" />
+                <div class="text-danger">Email được để trống.</div>
+              </div>
+              <div class="mb-2">
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input type="password" class="form-control" id="password" />
+                <div class="text-danger">Mật khẩu được để trống.</div>
+              </div>
+              <div class="d-flex justify-content-end gap-3">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Hủy
+                </button>
+                <button type="button" class="btn btn-primary">Lưu</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal add user end -->
+
+    <!-- Modal confirm delete start -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="confirmDelete"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Xác nhận</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Bạn có xác nhận muốn xóa sinh viên có mã SV001?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Hủy
+            </button>
+            <button type="button" class="btn btn-danger">Xóa</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal confirm delete end -->
+
+    <!-- Modal update student start-->
+    <div
+      class="modal fade"
+      id="updateStudent"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Cập nhật thông tin
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-2">
+                <label for="studentCode" class="form-label">Mã sinh viên</label>
+                <input type="email" class="form-control" id="studentCode" />
+                <div class="text-danger">Mã sinh viên không được để trống.</div>
+              </div>
+              <div class="mb-2">
+                <label for="studentName" class="form-label"
+                  >Tên sinh viên</label
+                >
+                <input type="text" class="form-control" id="studentName" />
+                <div class="text-danger">Mã sinh viên không được để trống.</div>
+              </div>
+              <div class="mb-2">
+                <label for="dateOfBirth" class="form-label">Ngày sinh</label>
+                <input type="date" class="form-control" id="dateOfBirth" />
+                <div class="text-danger">Ngày sinh không được để trống.</div>
+              </div>
+              <div class="mb-2">
+                <label for="address" class="form-label">Địa chỉ</label>
+                <input type="text" class="form-control" id="address" />
+              </div>
+              <div class="mb-2">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" />
+                <div class="text-danger">Email được để trống.</div>
+              </div>
+              <div class="mb-2">
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input type="password" class="form-control" id="password" />
+                <div class="text-danger">Mật khẩu được để trống.</div>
+              </div>
+              <div class="d-flex justify-content-end gap-3">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Hủy
+                </button>
+                <button type="button" class="btn btn-primary">Cập nhật</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal update student end-->
+
+    <!-- Tost message delete success start -->
+    <div
+      class="toast align-items-center text-white bg-primary border-0"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="d-flex">
+        <div class="toast-body">Xóa thành công</div>
+        <button
+          type="button"
+          class="btn-close btn-close-white me-2 m-auto"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+    <!-- Tost message delete success end -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
